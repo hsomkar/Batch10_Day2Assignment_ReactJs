@@ -1,38 +1,35 @@
 import "./App.css";
-import Select from "react-select";
-import { useState } from "react";
+
+class temp
+{
+   state = {
+    color: ""
+  };
+  
+   handleSubmit = (event) => {
+    event.preventDefault();
+    console.log("handle Submit");
+    console.log(this.state);
+    document.body.style.backgroundColor = event.target.value;
+    this.setState({
+      color: ""
+    });
+  };
+  
+   handleChange = (event) => {
+    this.setState({
+      [event.target.name]: event.target.value,
+    });
+  };
+}
 
 function App() {
-  var colors = [
-    {
-      value: 1,
-      label: "red",
-    },
-    {
-      value: 2,
-      label: "blue",
-    },
-    {
-      value: 3,
-      label: "orange",
-    },
-    {
-      value: 4,
-      label: "green",
-    },
-  ];
-
-  var [setbgcolor,ddlvalue]=useState(colors.label)
-  var handle=e=>{
-    ddlvalue(e.label)
-  }
   return (
     <div>
-      <style>{'body {background-color:'+setbgcolor+'}'}</style>
-      <Select options={colors}></Select>
-      <center>
-        <b>The background color is: {setbgcolor}</b>
-      </center>
+      <form onSubmit={temp.handleSubmit}>
+      <label for="color">Color: </label
+    ><input type="text" name="color" size="20" id="color"/>
+    <button type="submit" onChange={temp.handleChange}>Submit</button></form>
     </div>
   );
 }
